@@ -20,74 +20,24 @@
         <div class="ion-text-center ion-padding ion-margin-bottom core-login-site-logo" [class.hidden]="hasSites || enteredSiteUrl">
             <img src="assets/img/login_logo.png" class="avatar-full login-logo" [alt]="'core.login.logoof' | translate: { $a: appName }">
         </div>
-        @if (!fixedSites && siteForm) {
-            <form [formGroup]="siteForm" (ngSubmit)="connect(siteForm.value.siteUrl, $event)" #siteFormEl>
-                <!-- Form to input the site URL if there are no fixed sites. -->
-                @if (siteSelector === 'url') {
+        @if (schoolSites?.length) {
+            <ion-list class="school-selection-list">
+                <ion-item lines="none" class="school-selection-list-title">
+                    <ion-label>
+                        <h2 class="item-heading">{{ 'core.login.selectsite' | translate }}</h2>
+                    </ion-label>
+                </ion-item>
 
-                    <ion-item lines="inset">
-                        <ion-input name="url" type="url" placeholder="{{ 'core.login.siteaddressplaceholder' | translate }}"
-                            formControlName="siteUrl" [core-auto-focus]="showKeyboard && !showScanQR" labelPlacement="stacked"
-                            [label]="'core.login.siteaddress' | translate" [clearInput]="true" />
-                    </ion-item>
-
-                } @else {
-
-                    <ion-item lines="inset">
-                        <ion-input name="url" placeholder="{{ 'core.login.siteaddressplaceholder' | translate }}" formControlName="siteUrl"
-                            [core-auto-focus]="showKeyboard && !showScanQR" (ionInput)="searchSite($event, siteForm.value.siteUrl)"
-                            labelPlacement="stacked" [label]="'core.login.siteaddress' | translate" [clearInput]="true" />
-                    </ion-item>
-
-                    <ion-list [class.hidden]="!hasSites && !enteredSiteUrl" class="core-login-site-list">
-                        <ion-item class="core-login-site-list-title">
-                            <ion-label>
-                                <h2 class="item-heading">{{ 'core.login.selectsite' | translate }}</h2>
-                            </ion-label>
-                        </ion-item>
-                        @if (enteredSiteUrl) {
-                            <ion-item button (click)="connect(enteredSiteUrl.url, $event)"
-                                [attr.aria-label]="'core.login.connect' | translate" [detail]="true" class="core-login-entered-site">
-                                <ion-thumbnail slot="start" aria-hidden="true">
-                                    <ion-icon name="fas-pen" aria-hidden="true" />
-                                </ion-thumbnail>
-                                <ion-label>
-                                    <h2 class="ion-text-wrap">{{ 'core.login.yourenteredsite' | translate }}</h2>
-                                    <p>{{enteredSiteUrl.noProtocolUrl}}</p>
-                                </ion-label>
-                            </ion-item>
-                        }
-
-                        <div class="core-login-site-list-found" [class.hidden]="!hasSites" [class.dimmed]="loadingSites">
-                            @if (loadingSites) {
-                                <div class="core-login-site-list-loading">
-                                    <ion-spinner [attr.aria-label]="'core.loading' | translate" />
-                                </div>
-                            }
-                            <ng-container *ngFor="let site of sites">
-                                <ng-container *ngTemplateOutlet="sitelisting; context: {site: site}" />
-                            </ng-container>
-                        </div>
-                    </ion-list>
-
-                    @if (!hasSites && loadingSites) {
-                        <div class="core-login-site-nolist-loading">
-                            <ion-spinner [attr.aria-label]="'core.loading' | translate" />
-                        </div>
-                    }
-
-                }
-
-                @if (siteSelector === 'url') {
-                    <ion-item>
-                        <ion-label>
-                            <ion-button expand="block" [disabled]="!siteForm.valid" class="ion-text-wrap" type="submit">
-                                {{ 'core.login.connect' | translate }}
-                            </ion-button>
+                <ng-container *ngFor="let school of schoolSites">
+                    <ion-item button (click)="connect(school.url, $event)"
+                        [disabled]="!school.url" class="school-selection-item" detail="false">
+                        <ion-label class="school-selection-label">
+                            <h2 class="school-selection-name">{{ school.name }}</h2>
+                            <p class="school-selection-url">{{ school.url || 'URL not provided' }}</p>
                         </ion-label>
                     </ion-item>
-                }
-            </form>
+                </ng-container>
+            </ion-list>
         }
 
         @if (fixedSites) {

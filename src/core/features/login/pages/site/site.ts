@@ -71,6 +71,47 @@ export default class CoreLoginSitePage implements OnInit {
     siteSelector = CoreLoginSiteSelectorListMethod.SITE_FINDER;
     showKeyboard = false;
     filter = '';
+    schoolSites: Array<{ name: string; url: string }> = [
+        { name: 'SILLIMAN UNIVERSITY', url: 'https://su.edulearntechnologies.com' },
+        { name: 'ATENEO DE ZAMBOANGA UNIVERSITY - JHS', url: 'https://adzu.edulearntechnologies.com' },
+        { name: 'AKLAN CATHOLIC COLLEGE', url: 'https://acc.edulearntechnologies.com' },
+        { name: 'ST. TERESA SCHOOL OF HILONCOS', url: 'https://sths.edulearntechnologies.com' },
+        { name: 'UNIVERSITY OF SAN CARLOS', url: 'https://usc.edulearntechnologies.com' },
+        { name: 'ST. THERESE EDUCATIONAL FOUNDATION OF TACLOBAN INC.', url: 'https://stefti.edulearntechnologies.com' },
+        { name: 'THE LADY MEDIATRIX INSTITUTE, INC.', url: 'https://tlmiedulearntechnologies.com' },
+        { name: 'MARYKNOLL COLLEGE OF PANABO, INC.', url: 'https://mcpj.edulearntechnologies.com' },
+        { name: 'THE QUANTUM ACADEMY INC.', url: 'https://tqai.edulearntechnologies.com' },
+        { name: 'AKLAN VALLEY HIGH SCHOOL', url: 'https://avhs.edulearntechnologies.com' },
+        { name: 'FELKRIS ACADEMY INC.', url: 'https://fai.edulearntechnologies.com' },
+        { name: 'ST. SCHOLASTICA\'S ACADEMY TABUNOK', url: 'https://ssat.edulearntechnologies.com' },
+        { name: 'OUR SAVIOR\'S FOUNDATION INC.', url: 'https://osfi.edulearntechnologies.com' },
+        { name: 'NORTHWESTERN UNIVERSITY', url: 'https://nwu.edulearntechnologies.com' },
+        { name: 'UNIVERSITY OF LA SALETTE JHS', url: 'https://ul.s.edulearntechnologies.com' },
+        { name: 'UNIVERSITY OF LA SALETTE GSD', url: '' },
+        { name: 'MONTRESSORI DE CAGAYAN', url: 'https://mdc.edulearntechnologies.com' },
+        { name: 'ST. FRANCIS ACADEMY', url: 'https://sfa.edulearntechnologies.com' },
+        { name: 'St. Anthony\'s Academy of Gonzaga Inc', url: 'https://saagi.edulearntechnologies.com' },
+        { name: 'NOTRE DAME OF TACURONG COLLEGE INC.', url: 'https://ndtc.edulearntechnologies.com' },
+        { name: 'Intellectual Development for Early Age School, Inc. IDEAS', url: 'https://ideas.edulearntechnologies.com' },
+        { name: 'UNIVERSITY OF SAN JOSE RECOLETOS - JHS', url: 'https://usjr.edulearntechnologies.com' },
+        { name: 'APG SAINT PETER\'S COLLEGE ORMOC', url: 'https://spco.edulearntechnologies.com' },
+        { name: 'APG SAINT THOMAS AQUINAS COLLEGE', url: 'https://stac.edulearntechnologies.com' },
+        { name: 'VAC EduLearn Academy', url: 'https://ea.edulearntechnologies.com' },
+        { name: 'VAC / BICOL ATENEO DE NAGA UNIVERSITY', url: 'https://adnu.edulearntechnologies.com' },
+        { name: 'VAC / BICOL ST. AGNES ACADEMY', url: 'https://saa.edulearntechnologies.com' },
+        { name: 'OMA LORD OF ZION DIVINE SCHOOL', url: 'https://lzds.edulearntechnologies.com' },
+        { name: 'PVM HOLY SPIRIT SCHOOL OF TAGBILARAN', url: 'https://hsst.edulearntechnologies.com' },
+        { name: 'PVM HOLY NAME UNIVERSITY', url: 'https://hnu.edulearntechnologies.com' },
+        { name: 'PVM BOHOL WISDOM SCHOOL', url: 'https://bws.edulearntechnologies.com' },
+        { name: 'PVM HOLY INFANT SCHOOL OF TAGBILARAN', url: 'https://hist.edulearntechnologies.com' },
+        { name: 'APG HOLY TRINITY COLLEGE OF ALANGALANG', url: 'https://htcd.edulearntechnologies.com' },
+        { name: 'APG NOTRE DAME OF ABUYOG', url: 'https://nda.edulearntechnologies.com' },
+        { name: 'PANAY COLEGIO DEL SAGRADO CORAZON DE JESUS', url: 'https://cscj.edulearntechnologies.com' },
+        { name: 'PANAY HOLY ROSARY ACADEMY OF MOLO', url: 'https://hram.edulearntechnologies.com' },
+        { name: 'UNIVERSITY OF NEGROS OCCIDENTAL - RECOLETOS', url: 'https://unor.edulearntechnologies.com' },
+        { name: 'ASSUMPTION ILOILO', url: 'https://ai.edulearntechnologies.com' },
+        { name: 'HOLY FAMILY OF NAZARETH SCHOOL', url: 'https://hfns.edulearntechnologies.com' },
+    ];
     sites: CoreLoginSiteInfoExtended[] = [];
     hasSites = false;
     loadingSites = false;

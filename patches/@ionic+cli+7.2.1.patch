@@ -1,0 +1,13 @@
+diff --git a/node_modules/@ionic/cli/commands/cordova/run.js b/node_modules/@ionic/cli/commands/cordova/run.js
+index 0c8721aa..e50c81aa 100644
+--- a/node_modules/@ionic/cli/commands/cordova/run.js
++++ b/node_modules/@ionic/cli/commands/cordova/run.js
+@@ -262,6 +262,8 @@
+             const [platform] = inputs;
+             await this.runCordova((0, utils_1.filterArgumentsForCordova)({ ...metadata, name: 'build' }, options), buildOpts);
+             const packagePath = await (0, project_1.getPackagePath)(this.integration.root, conf.getProjectInfo().name, platform, { emulator: !options['device'], release: !!options['release'] });
+             const forwardedPorts = details ? runner.getUsedPorts(runnerOpts, details) : [];
+             await this.runNativeRun((0, native_run_1.createNativeRunArgs)({ packagePath, platform, forwardedPorts }, options));
++            // Keep CLI alive so livereload dev server is not killed when native-run exits (matches --no-native-run).
++            await (0, utils_process_1.sleepForever)();
+         }

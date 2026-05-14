@@ -104,6 +104,7 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "disableHostCheck": true,
+            "allowedHosts": ["10.0.2.2", "localhost", "127.0.0.1", ".localhost"],
             "port": 8100,
             "buildTarget": "app:build"
           },

@@ -20,7 +20,7 @@ import 'zone.js';
 
 // Platform polyfills
 import 'core-js/es/array/at';
-import 'core-js/es/object/has-own';
+import 'core-js/modules/es.object.has-own';
 import 'core-js/es/string/at';
 import 'core-js/es/typed-array/at';
 
