@@ -1,3 +1,9 @@
 <ion-app>
     <ion-router-outlet />
 </ion-app>
+@if (animatedSplashPhase() !== 'hidden') {
+    <app-savvy-lottie-splash
+        [exiting]="animatedSplashPhase() === 'exiting'"
+        (introFinished)="onSavvyLottieIntroFinished()"
+    />
+}

@@ -1,0 +1,45 @@
+:host {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    display: block;
+    pointer-events: auto;
+}
+
+.savvy-lottie-shell {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: max(0.5rem, env(safe-area-inset-top)) max(0.5rem, env(safe-area-inset-right))
+        max(0.5rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-left));
+    background-color: #fff;
+    background-image: radial-gradient(ellipse 120% 90% at 50% 100%, rgb(241 245 249 / 1) 0%, rgb(255 255 255 / 0) 58%);
+    opacity: 1;
+    transition: opacity 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:host.savvy-lottie-splash--exiting .savvy-lottie-shell {
+    opacity: 0;
+}
+
+.savvy-lottie-host {
+    width: min(92vw, 420px);
+    height: min(72vh, 520px);
+    max-width: 100%;
+    max-height: min(85dvh, 640px);
+}
+
+.savvy-lottie-host ::ng-deep svg {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .savvy-lottie-shell {
+        transition-duration: 0.22s;
+    }
+}

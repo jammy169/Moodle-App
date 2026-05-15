@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { AfterViewInit, Component, OnInit, viewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, signal, viewChild } from '@angular/core';
 import { IonRouterOutlet, IonicModule } from '@ionic/angular';
 import { BackButtonEvent } from '@ionic/core';
 
@@ -28,19 +28,36 @@ import { register } from 'swiper/element/bundle';
 import { CoreWait } from '@static/wait';
 import { CoreOpener } from '@static/opener';
 import { BackButtonPriority } from '@/core/constants';
+import { SavvyLottieSplashComponent } from '@/app/components/savvy-lottie-splash/savvy-lottie-splash.component';
 
 register();
+
+/** Fade duration after Lottie `complete` before removing the overlay. */
+const SAVVY_LOTTIE_EXIT_MS = 520;
 
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
-    imports: [IonicModule],
+    imports: [IonicModule, SavvyLottieSplashComponent],
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
     readonly outlet = viewChild.required(IonRouterOutlet);
 
     protected logger = CoreLogger.getInstance('AppComponent');
+
+    /**
+     * Lottie intro overlay: visible until the animation completes, then fades out.
+     */
+    readonly animatedSplashPhase = signal<'full' | 'exiting' | 'hidden'>('full');
+
+    /**
+     * Lottie intro finished — begin fade-out then remove overlay.
+     */
+    onSavvyLottieIntroFinished(): void {
+        this.animatedSplashPhase.set('exiting');
+        window.setTimeout(() => this.animatedSplashPhase.set('hidden'), SAVVY_LOTTIE_EXIT_MS);
+    }
 
     /**
      * @inheritdoc

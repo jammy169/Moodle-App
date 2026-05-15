@@ -45,6 +45,19 @@
 
 }
 
+.core-login-site-logo {
+    img.connect-brand-logo {
+        display: inline-block;
+        max-width: 100%;
+        max-height: min(40vh, 200px);
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 0;
+        vertical-align: middle;
+    }
+}
+
 .core-login-site-logo,
 .core-login-site-list,
 .core-login-site-list-found {
